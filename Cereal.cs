@@ -1,4 +1,4 @@
-using System.Reflection.Metadata.Ecma335;
+
 
 class CerealAisle
 {
@@ -9,24 +9,24 @@ class CerealAisle
         Cereals = [..csvLines.Select(l => new Cereal(l))];
     }
 
-    public static Manufacturer GetManufacturer(char c) => c switch
+    public static string GetManufacturer(char c) => c switch
     {
-        'A' => Manufacturer.A,
-        'G' => Manufacturer.G,
-        'K' => Manufacturer.K,
-        'N' => Manufacturer.N,
-        'P' => Manufacturer.P,
-        'Q' => Manufacturer.Q,
-        'R' => Manufacturer.R,
-        _ => Manufacturer.Unknown
+        'A' => "American Home Food Products",
+        'G' => "General Mills",
+        'K' => "Kelloggs",
+        'N' => "Nabisco",
+        'P' => "Post",
+        'Q' => "Quaker Oats",
+        'R' => "Ralston Purina",
+        _ => "Unknown"
     };
 }
 
 class Cereal
 {
     string name {get;}
-    string mfr {get;}// To be replaced by enum
-    bool cold {get;} // To be replaced by enum or bool
+    string mfr {get;}
+    bool cold {get;}
     int calories {get;} 
     int protein {get;} 
     int fat {get;} 
@@ -45,8 +45,8 @@ class Cereal
     {
         string[] parsedValues = csvLine.Split(',',StringSplitOptions.RemoveEmptyEntries);
         name = parsedValues[0];
-        mfr = parsedValues[1]; 
-        cold = (parsedValues[2] == "C");
+        mfr = CerealAisle.GetManufacturer(parsedValues[1][0]); 
+        cold = parsedValues[2] == "C";
         calories = int.Parse(parsedValues[3]);
         protein = int.Parse(parsedValues[4]); 
         fat = int.Parse(parsedValues[5]); 
@@ -61,16 +61,4 @@ class Cereal
         cups = Double.Parse(parsedValues[14]); 
         rating = Decimal.Parse(parsedValues[15]);
     }
-}
-
-public enum Manufacturer
-{   
-    A,
-    G,
-    K,
-    N,
-    P,
-    Q,
-    R,
-    Unknown
 }
