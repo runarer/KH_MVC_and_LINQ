@@ -1,4 +1,8 @@
+class Cereals(Cereal[] cereals)
+{
+    private Cereal[] _cereals = cereals;
 
+}
 class Cereal(
         string name,
         string mfr,

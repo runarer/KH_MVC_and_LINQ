@@ -2,7 +2,7 @@
 
 class Reader
 {    
-    public static Cereal[] ReadCerealFile(string filename)
+    public static Cereals ReadCerealFile(string filename)
     {
         Cereal[] cereals = [];
         try
@@ -13,7 +13,7 @@ class Reader
         {
             throw new FileNotFoundException("This program requires 'cereal.csv' from 80-cereal from Kaggle.",ex);
         }
-        return cereals;
+        return new Cereals(cereals);
     }
 
     private static Cereal ParseCerealCSVLine(string line)
