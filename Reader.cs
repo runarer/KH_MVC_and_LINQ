@@ -1,0 +1,51 @@
+// Reads a csv file and creates 
+
+class Reader
+{    
+    public static Cereal[] ReadCerealFile(string filename)
+    {
+        Cereal[] cereals = [];
+        try
+        {
+            string[] lines = File.ReadAllLines("./cereal.csv");
+            cereals = [..lines[1..].Select(ParseCerealCSVLine)];
+        } catch (FileNotFoundException ex)
+        {
+            throw new FileNotFoundException("This program requires 'cereal.csv' from 80-cereal from Kaggle.",ex);
+        }
+        return cereals;
+    }
+
+    private static Cereal ParseCerealCSVLine(string line)
+    {
+        string[] parsedValues = line.Split(',',StringSplitOptions.RemoveEmptyEntries);
+        string name = parsedValues[0];
+        string mfr = Reader.GetManufacturer(parsedValues[1][0]); 
+        bool cold = parsedValues[2] == "C";
+        int calories = int.Parse(parsedValues[3]);
+        int protein = int.Parse(parsedValues[4]); 
+        int fat = int.Parse(parsedValues[5]); 
+        int sodium = int.Parse(parsedValues[6]); 
+        double fiber = Double.Parse(parsedValues[7]); 
+        double carbo = Double.Parse(parsedValues[8]); 
+        int sugars = int.Parse(parsedValues[9]); 
+        int potass = int.Parse(parsedValues[10]); 
+        int vitamins = int.Parse(parsedValues[11]); 
+        int shelf = int.Parse(parsedValues[12]); 
+        int weight = int.Parse(parsedValues[13]); 
+        double cups = Double.Parse(parsedValues[14]); 
+        decimal rating = Decimal.Parse(parsedValues[15]);
+        return new Cereal(name,mfr,cold,calories,protein,fat,sodium,fiber,carbo,sugars,potass,vitamins,shelf,weight,cups,rating);    
+    }
+    private static string GetManufacturer(char c) => c switch
+    {
+        'A' => "American Home Food Products",
+        'G' => "General Mills",
+        'K' => "Kelloggs",
+        'N' => "Nabisco",
+        'P' => "Post",
+        'Q' => "Quaker Oats",
+        'R' => "Ralston Purina",
+        _ => "Unknown"
+    };
+}
