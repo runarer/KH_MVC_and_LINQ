@@ -54,11 +54,11 @@ class Controller(Cereals cereals, CerealView cerealView)
                     case 'Q':
                         return;            
                     default: 
-                        break;
+                        continue;
                 }
+            }
                 CerealView.DisplayContinueMessage();
                 _ = Console.ReadKey();
-            }
         }
     }
 
