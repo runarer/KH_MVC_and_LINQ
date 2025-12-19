@@ -17,7 +17,7 @@ class Cereal(
         int potass,
         int vitamins,
         int shelf,
-        int weight,
+        double weight,
         double cups,
         decimal rating)
 {
@@ -34,7 +34,7 @@ class Cereal(
     int Potass {get;} = potass; 
     int Vitamins {get;} = vitamins;
     int Shelf {get;} = shelf; 
-    int Weight {get;} = weight;
+    double Weight {get;} = weight;
     double Cups {get;} = cups;
     decimal Rating {get;} = rating;
 }
