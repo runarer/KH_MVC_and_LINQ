@@ -1,3 +1,6 @@
+
+using System.Text;
+
 class CerealView
 {
     public static void DisplayMenu()
@@ -48,6 +51,37 @@ class CerealView
 
     public static void DisplayCerealInfo(Cereal cereal)
     {
+        StringBuilder sb =  new StringBuilder();
         
+        sb.Append($"{cereal.Name} is made by {cereal.MFR} and is best served {((cereal.Cold) ? "cold" :"hot" )}. \n");
+        sb.Append($"One serving is {cereal.Cups} cups and weights {cereal.Weight} ounces, and contains {cereal.Calories} calories.\n");
+        sb.Append("Nutrients:\n");
+        
+        if(cereal.Fat == 0)
+            sb.Append("Unknown");
+        else
+            sb.Append(cereal.Fat);
+        sb.Append(" grams fats\n");
+
+        if(cereal.Sugars == 0)
+            sb.Append("Unknown");
+        else
+            sb.Append(cereal.Sugars);
+        sb.Append(" grams sugars\n");
+        
+        if(cereal.Fiber == 0)
+            sb.Append("Unknown");
+        else
+            sb.Append(cereal.Fiber);
+        sb.Append(" grams fibers\n");
+        
+        if(cereal.Sodium == 0)
+            sb.Append("Unknown");
+        else
+            sb.Append(cereal.Sodium);
+        sb.Append(" grams Salt\n");
+        
+        sb.Append($"\nThis cereal is rated {cereal.Rating}");
+        Console.WriteLine(sb.ToString());
     }
 }
