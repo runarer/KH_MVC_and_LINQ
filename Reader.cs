@@ -11,7 +11,7 @@ class Reader
             cereals = [..lines[1..].Select(ParseCerealCSVLine)];
         } catch (FileNotFoundException ex)
         {
-            throw new FileNotFoundException("This program requires 'cereal.csv' from 80-cereal from Kaggle.",ex);
+            throw new FileNotFoundException("This program requires a csv file from Kaggle, 80-cereal.",ex);
         }
         return new Cereals(cereals);
     }
