@@ -1,3 +1,4 @@
+
 class Cereals(Cereal[] cereals)
 {
     private Cereal[] _cereals = cereals;
@@ -8,6 +9,11 @@ class Cereals(Cereal[] cereals)
 
     public IEnumerable<string> GetListOfCereals(bool cold){
         return _cereals.Where(m => m.Cold == cold).Select(m => m.Name);
+    }
+
+    public IEnumerable<IGrouping<string,string>> GetListOfCerealsByMFR()
+    {
+        return _cereals.GroupBy( cereal => cereal.MFR, cereal => cereal.Name);
     }
 }
 class Cereal(
