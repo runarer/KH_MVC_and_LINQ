@@ -57,7 +57,7 @@ class Controller(Cereals cereals, CerealView cerealView)
                         break;
                 }
                 CerealView.DisplayContinueMessage();
-                int anyKey = Console.Read();
+                _ = Console.ReadKey();
             }
         }
     }
