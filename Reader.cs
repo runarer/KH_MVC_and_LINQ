@@ -20,7 +20,6 @@ class Reader
     {
         string[] parsedValues = line.Split(',',StringSplitOptions.RemoveEmptyEntries);
         string name = parsedValues[0];
-        Console.WriteLine(name);
         string mfr = Reader.GetManufacturer(parsedValues[1][0]); 
         bool cold = parsedValues[2] == "C";
         int calories = int.Parse(parsedValues[3]);
