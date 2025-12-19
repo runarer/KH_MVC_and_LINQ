@@ -38,7 +38,7 @@ while(userInput != "q" && userInput != "Q")
             
             // List cereals by manufactures
             case '4': 
-            
+                CerealView.DisplayCerealsByManufacturer(cereals.GetListOfCerealsByMFR());
                 break;
             case 'q':
                 return;

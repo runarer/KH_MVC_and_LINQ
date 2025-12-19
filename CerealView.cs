@@ -28,4 +28,14 @@ class CerealView
         foreach(var cereal in cereals)
             Console.WriteLine($"\t{cereal}");
     }
+
+    public static void DisplayCerealsByManufacturer(IEnumerable<IGrouping<string,string>> cereals) 
+    {
+        foreach(var group in cereals)
+        {
+            Console.WriteLine(group.Key);
+            ListCereals(group);
+            Console.WriteLine();
+        }
+    }
 }
