@@ -1,17 +1,18 @@
-﻿
-string[] lines;
+﻿string filename = "./cereal.csv";
 
-try
+Cereals? cereals=null;
+try {
+    cereals = Reader.ReadCerealFile(filename);
+} 
+catch (FileNotFoundException ex)
 {
-    lines = File.ReadAllLines("./cereal.csv");
-    Console.WriteLine(lines[0]);
-} catch (FileNotFoundException ex)
-{
-    Console.WriteLine("File not found. This program requires 'cereal.csv' from 80-cereal from Kaggle.");
-    Console.WriteLine(ex.Message);
-    System.Environment.Exit(2);
-} catch (Exception ex)
-{
-    Console.WriteLine(ex.Message);
-    System.Environment.Exit(1);
+    Console.WriteLine($"File {filename} not found.",ex);
 }
+
+string userInput = string.Empty;
+while(userInput != "q" || userInput != "Q")
+{
+    CerealView.DisplayMenu();    
+}
+
+Console.WriteLine("FFF");
