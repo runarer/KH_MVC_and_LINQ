@@ -38,4 +38,16 @@ class CerealView
             Console.WriteLine();
         }
     }
+
+    public static void DisplayCerealNotFound(string cerealName)
+    {
+        Console.WriteLine();
+        Console.WriteLine($"Could not find {cerealName}");
+        Console.WriteLine();
+    }
+
+    public static void DisplayCerealInfo(Cereal cereal)
+    {
+        
+    }
 }

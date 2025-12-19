@@ -4,8 +4,8 @@ string filename = "./cereal.csv";
 
 try {
     Cereals cereals = Reader.ReadCerealFile(filename);
-    CerealView cerealView = new();
-    Controller controller = new(cereals,cerealView);
+    // CerealView cerealView = new();
+    Controller controller = new(cereals);
     controller.Run();
 } 
 catch (FileNotFoundException ex)
@@ -13,10 +13,10 @@ catch (FileNotFoundException ex)
     Console.WriteLine($"File {filename} not found.",ex);
 }
 
-class Controller(Cereals cereals, CerealView cerealView)
+class Controller(Cereals cereals)
 {
     public Cereals cereals {get;} = cereals;
-    public CerealView cerealView {get;} = cerealView;
+    // public CerealView cerealView {get;} = cerealView;
     
     public void Run()
     {
@@ -27,6 +27,8 @@ class Controller(Cereals cereals, CerealView cerealView)
             userInput = Console.ReadLine();
             if(string.IsNullOrEmpty(userInput))
                 continue;
+
+            // For simple input
             if(userInput.Length == 1) {
                 switch(userInput[0]) 
                 {
@@ -56,9 +58,23 @@ class Controller(Cereals cereals, CerealView cerealView)
                     default: 
                         continue;
                 }
+            } 
+
+            // For longer input, cereal names
+            else
+            {
+                Cereal? cerealInfo = cereals.GetCereal(userInput);
+                if(cerealInfo == null)
+                {
+                    CerealView.DisplayCerealNotFound(userInput);
+                } 
+                else
+                {
+                    CerealView.DisplayCerealInfo(cerealInfo);
+                }
             }
-                CerealView.DisplayContinueMessage();
-                _ = Console.ReadKey();
+            CerealView.DisplayContinueMessage();
+            _ = Console.ReadKey();
         }
     }
 
