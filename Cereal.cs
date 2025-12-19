@@ -2,6 +2,13 @@ class Cereals(Cereal[] cereals)
 {
     private Cereal[] _cereals = cereals;
 
+    public IEnumerable<string> GetListOfCereals(){
+        return _cereals.Select( m => m.Name );
+    }
+
+    public IEnumerable<string> GetListOfCereals(bool cold){
+        return _cereals.Where(m => m.Cold == cold).Select(m => m.Name);
+    }
 }
 class Cereal(
         string name,
@@ -21,20 +28,20 @@ class Cereal(
         double cups,
         decimal rating)
 {
-    string Name {get;} = name;
-    string MFR {get;} = mfr;
-    bool Cold {get;} = cold;
-    int Calories {get;} = calories;
-    int Protein {get;} = protein; 
-    int Fat {get;} = fat;
-    int Sodium {get;} = sodium; 
-    double Fiber {get;} = fiber; 
-    double Carbohydrates {get;} = carbo;
-    int Sugars {get;} = sugars;
-    int Potass {get;} = potass; 
-    int Vitamins {get;} = vitamins;
-    int Shelf {get;} = shelf; 
-    double Weight {get;} = weight;
-    double Cups {get;} = cups;
-    decimal Rating {get;} = rating;
+    public string Name {get;} = name;
+    public string MFR {get;} = mfr;
+    public bool Cold {get;} = cold;
+    public int Calories {get;} = calories;
+    public int Protein {get;} = protein; 
+    public int Fat {get;} = fat;
+    public int Sodium {get;} = sodium; 
+    public double Fiber {get;} = fiber; 
+    public double Carbohydrates {get;} = carbo;
+    public int Sugars {get;} = sugars;
+    public int Potass {get;} = potass; 
+    public int Vitamins {get;} = vitamins;
+    public int Shelf {get;} = shelf; 
+    public double Weight {get;} = weight;
+    public double Cups {get;} = cups;
+    public decimal Rating {get;} = rating;
 }
