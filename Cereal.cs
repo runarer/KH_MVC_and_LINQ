@@ -15,6 +15,11 @@ class Cereals(Cereal[] cereals)
     {
         return _cereals.GroupBy( cereal => cereal.MFR, cereal => cereal.Name);
     }
+
+    public Cereal? GetCereal(string name)
+    {
+        return _cereals.FirstOrDefault( m => m.Name == name);
+    }
 }
 class Cereal(
         string name,
