@@ -11,7 +11,7 @@ class CerealView
         Console.WriteLine("Q. Quit");
     }
 
-    public static void DisplayMessage()
+    public static void DisplayContinueMessage()
     {
         Console.WriteLine("Press the 'Any key' to go back to menu");
     }
