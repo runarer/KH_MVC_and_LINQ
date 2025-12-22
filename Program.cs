@@ -28,7 +28,7 @@ class Controller(Cereals cereals)
         {
             // Display a menu and wait for input
             CerealView.DisplayMenu();
-            userInput = Console.ReadLine();
+            userInput = Console.ReadLine()?.Trim();
             if(string.IsNullOrEmpty(userInput))
                 continue;
 
