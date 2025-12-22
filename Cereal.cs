@@ -3,15 +3,15 @@ class Cereals(Cereal[] cereals)
 {
     private Cereal[] _cereals = cereals;
 
-    public IEnumerable<string> GetListOfCereals(){
+    public IEnumerable<string> GetListOfAllCereals(){
         return _cereals.Select( m => m.Name );
     }
 
-    public IEnumerable<string> GetListOfCereals(bool cold){
+    public IEnumerable<string> GetListOfHotOrColdCereals(bool cold){
         return _cereals.Where(m => m.Cold == cold).Select(m => m.Name);
     }
 
-    public IEnumerable<IGrouping<string,string>> GetListOfCerealsByMFR()
+    public IEnumerable<IGrouping<string,string>> GetListOfCerealsByManufacturer()
     {
         return _cereals.GroupBy( cereal => cereal.MFR, cereal => cereal.Name);
     }

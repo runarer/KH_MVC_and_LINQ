@@ -1,55 +1,59 @@
 ﻿
 
 string filename = "./cereal.csv";
+Controller controller;
 
+// Try to read file and then create the model and the controller.
 try {
     Cereals cereals = Reader.ReadCerealFile(filename);
-    // CerealView cerealView = new();
-    Controller controller = new(cereals);
-    controller.Run();
+    controller = new(cereals);
 } 
 catch (FileNotFoundException ex)
 {
     Console.WriteLine($"File {filename} not found.",ex);
+    return 1;
 }
+
+controller.Run();
+return 0;
 
 class Controller(Cereals cereals)
 {
     public Cereals cereals {get;} = cereals;
-    // public CerealView cerealView {get;} = cerealView;
     
     public void Run()
     {
         string? userInput = string.Empty;
         while(userInput != "q" && userInput != "Q")
         {
+            // Display a menu and wait for input
             CerealView.DisplayMenu();
             userInput = Console.ReadLine();
             if(string.IsNullOrEmpty(userInput))
                 continue;
 
-            // For simple input
+            // For simple input, menu choices
             if(userInput.Length == 1) {
                 switch(userInput[0]) 
                 {
                     // List all cereals
                     case '1':
-                        CerealView.ListCereals(cereals.GetListOfCereals());
+                        CerealView.ListCereals(cereals.GetListOfAllCereals());
                         break;
 
                     // List all cereals best served cold
                     case '2':
-                        CerealView.ListCereals(cereals.GetListOfCereals(true));
+                        CerealView.ListCereals(cereals.GetListOfHotOrColdCereals(true));
                         break;
 
                     // List all cereals best served hot
                     case '3':
-                        CerealView.ListCereals(cereals.GetListOfCereals(false));
+                        CerealView.ListCereals(cereals.GetListOfHotOrColdCereals(false));
                         break;
                     
                     // List cereals by manufactures
                     case '4': 
-                        CerealView.DisplayCerealsByManufacturer(cereals.GetListOfCerealsByMFR());
+                        CerealView.DisplayCerealsByManufacturer(cereals.GetListOfCerealsByManufacturer());
                         break;
                     case 'q':
                         return;
@@ -74,7 +78,7 @@ class Controller(Cereals cereals)
                 }
             }
             CerealView.DisplayContinueMessage();
-            _ = Console.ReadKey();
+            _ = Console.ReadKey(); // Wait, then return to menu
         }
     }
 

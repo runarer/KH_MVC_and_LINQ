@@ -51,7 +51,7 @@ class CerealView
 
     public static void DisplayCerealInfo(Cereal cereal)
     {
-        StringBuilder sb =  new StringBuilder();
+        StringBuilder sb =  new ();
         
         sb.Append($"{cereal.Name} is made by {cereal.MFR} and is best served {((cereal.Cold) ? "cold" :"hot" )}. \n");
         sb.Append($"One serving is {cereal.Cups} cups and weights {cereal.Weight} ounces, and contains {cereal.Calories} calories.\n");

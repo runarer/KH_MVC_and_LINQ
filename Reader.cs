@@ -1,7 +1,8 @@
 // Reads a csv file and creates 
 
 class Reader
-{    
+{   
+    // Try to read a csv file with cereal info, then parse it 
     public static Cereals ReadCerealFile(string filename)
     {
         Cereal[] cereals = [];
@@ -16,6 +17,8 @@ class Reader
         return new Cereals(cereals);
     }
 
+    // Parses a line with info sepereated by , 
+    // Use "System.Globalization.CultureInfo.InvariantCulture" to insure doubles uses .
     private static Cereal ParseCerealCSVLine(string line)
     {
         string[] parsedValues = line.Split(',',StringSplitOptions.RemoveEmptyEntries);
@@ -37,6 +40,8 @@ class Reader
         decimal rating = Decimal.Parse(parsedValues[15], System.Globalization.CultureInfo.InvariantCulture);
         return new Cereal(name,mfr,cold,calories,protein,fat,sodium,fiber,carbo,sugars,potass,vitamins,shelf,weight,cups,rating);    
     }
+    
+    // These are from the Kaggle page for the csv.
     private static string GetManufacturer(char c) => c switch
     {
         'A' => "American Home Food Products",
